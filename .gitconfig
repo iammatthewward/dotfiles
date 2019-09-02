@@ -1,0 +1,9 @@
+[core]
+    excludesfile = /Users/matt/.gitignore_global
+[push]
+    default = simple
+[user]
+    name = Matt Ward
+    email = iammatthewward@gmail.com
+[commit]
+    template = /Users/matt/.stCommitMsg<Paste>
