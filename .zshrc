@@ -28,7 +28,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export DEFAULT_USER="mattward"
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='fd --type f'
 
 export AWS_USERNAME="matt.ward"
 
