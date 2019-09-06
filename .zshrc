@@ -15,8 +15,6 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
 # Preferred editor
 export EDITOR='vim'
 
@@ -26,10 +24,11 @@ export EDITOR='vim'
 export NVM_DIR="$HOME/.nvm"
 . "$(brew --prefix nvm)/nvm.sh"
 
+# use fd when fuzzy searching with fzf to respect .gitignore
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 export DEFAULT_USER="mattward"
-
-export FZF_DEFAULT_COMMAND='fd --type f'
-
 export AWS_USERNAME="matt.ward"
 
 # this must go at the end of the file
