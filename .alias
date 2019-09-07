@@ -4,5 +4,5 @@ alias master="git checkout master"
 # vim
 alias vim="nvim"
 alias v="vim"
-alias vo="vim ."
+alias ve="vim ."
 alias vf="vim -c ':FZF'"
