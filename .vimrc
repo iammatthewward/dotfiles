@@ -75,7 +75,11 @@ set splitright              " create new vsplit right of current buffer
 " File navigation
 let g:netrw_liststyle = 3                       " set tree list view in netrw
 let g:netrw_banner = 0                          " hide banner in netrw
-autocmd FileType netrw setl bufhidden=delete    " fix to prevent netrwtreelisting files
+autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelisting files
+
+" Buffer navigation
+:nnoremap <C-n> :bnext<CR>
+:nnoremap <C-p> :bprevious<CR>
 
 " Linting and fixing
 let g:ale_fix_on_save = 1
