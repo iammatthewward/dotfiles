@@ -6,3 +6,7 @@ alias vim="nvim"
 alias v="vim"
 alias ve="vim ."
 alias vf="vim -c ':FZF'"
+
+# postgresql
+alias pg_start="brew services start postgresql"
+alias pg_stop="brew services stop postgresql"
