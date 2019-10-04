@@ -73,7 +73,7 @@ set splitbelow              " create new vsplit below current buffer
 set splitright              " create new vsplit right of current buffer
 
 " File navigation
-let g:netrw_liststyle = 3                       " set tree list view in netrw
+let g:netrw_liststyle = 1                       " set tree list view in netrw
 let g:netrw_banner = 0                          " hide banner in netrw
 autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelisting files
 
