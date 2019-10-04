@@ -66,6 +66,9 @@ nnoremap <C-H> <C-W><C-H>
 :command WQ wq
 :command Wq wq
 
+" copy to system clipboard
+noremap <C-y> "*y
+
 " Press space to turn off highlighted search and clear search
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
