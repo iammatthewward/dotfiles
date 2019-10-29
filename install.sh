@@ -9,5 +9,6 @@ ln -sfv "$DOTFILES_DIR/.vim/ftplugin/elixir.vim" ~/.vim/ftplugin/elixir.vim
 ln -sfv "$DOTFILES_DIR/.vim/ftplugin/css.vim" ~/.vim/ftplugin/css.vim
 ln -sfv "$DOTFILES_DIR/.vim/ftplugin/json.vim" ~/.vim/ftplugin/json.vim
 ln -sfv "$DOTFILES_DIR/.vim/ftplugin/terraform.vim" ~/.vim/ftplugin/terraform.vim
+ln -sfv "$DOTFILES_DIR/.vim/ftplugin/velocity.vim" ~/.vim/ftplugin/velocity.vim
 ln -sfv "$DOTFILES_DIR/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/.zshrc" ~
