@@ -35,21 +35,32 @@ endif
 
 " Options required for lightline
 let g:lightline = { 'colorscheme': 'onedark' }  " colourscheme
+let g:onedark_hide_endofbuffer = 1              " hide end-of-buffer ~ lines
 set laststatus=2                                " ensure status line always show
 set noshowmode                                  " hide mode since lightline shows it anyway
+set cursorline                                  " highlight the current line
 
-" onedark.vim override: Don't set a background color when running in a terminal;
-" just use the terminal's background color
-" `gui` is the hex color code used in GUI mode/nvim true-color mode
-" `cterm` is the color code used in 256-color mode
-" `cterm16` is the color code used in 16-color mode
+" Colorscheme overrides
 if (has("autocmd") && !has("gui_running"))
   augroup colorset
     autocmd!
     let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+    let s:black = { "gui": "#282c34", "cterm": "235", "cterm16" : "0" }
+    let s:grey = { "gui": "#808A9D", "cterm": "244", "cterm16" : "8" }
+    " use the terminal's background color (`bg` will not be styled since there is no `bg` setting)
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white })
+
+    " make line numbers more legible
+    autocmd ColorScheme * call onedark#extend_highlight("LineNr", { "fg": s:grey })
+    autocmd ColorScheme * call onedark#extend_highlight("CursorLineNr", { "fg": s:white })
+
+    " less jarring search highlighting
+    autocmd ColorScheme * call onedark#extend_highlight("Search", { "bg": s:white })
+    autocmd ColorScheme * call onedark#extend_highlight("IncSearch", {  "fg": s:black, "bg": s:white })
   augroup END
 endif
+
+let g:onedark_terminal_italics = 1 " allow italics
 
 colorscheme onedark
 
