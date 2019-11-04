@@ -1,1 +1,1 @@
-/Users/mattward/projects/dotfiles/.vim/ftplugin/elixir.vim
+let b:ale_fixers = ['mix_format']
