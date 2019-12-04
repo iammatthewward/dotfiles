@@ -1,5 +1,6 @@
 # git
 alias master="git checkout master"
+alias grm="git fetch && git rebase origin/master"
 
 # vim
 alias vim="nvim"
