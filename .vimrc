@@ -26,8 +26,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'dense-analysis/ale'
+Plug 'mileszs/ack.vim'
 
 call plug#end()
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " Colour support
 if (has("termguicolors"))
@@ -91,6 +96,8 @@ set splitright              " create new vsplit right of current buffer
 let g:netrw_liststyle = 1                       " set tree list view in netrw
 let g:netrw_banner = 0                          " hide banner in netrw
 autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelisting files
+" shortcut - to open file navigation
+:nnoremap - :E<CR>
 
 " Buffer navigation
 :nnoremap <C-n> :bnext<CR>
