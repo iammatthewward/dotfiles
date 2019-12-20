@@ -2,15 +2,16 @@
 set nocompatible
 
 " Core
-set number              " turn line numbers on
-syntax on               " turn on syntax highlighting
-set expandtab           " use spaces for tabs
-set shiftwidth=4        " spaces to use when auto indenting
-set softtabstop=4       " set tab to 4 spaces
-set bs=2                " allow backspace to delete over line breaks and tabbed indentation
-set mouse=a             " pass mouse scrolling control to vim
-set so=999              " keep cursor centered on scroll
-:au FocusLost * :wa     " autosave on focus lost
+set number                          " turn line numbers on
+syntax on                           " turn on syntax highlighting
+set expandtab                       " use spaces for tabs
+set shiftwidth=4                    " spaces to use when auto indenting
+set softtabstop=4                   " set tab to 4 spaces
+set bs=2                            " allow backspace to delete over line breaks and tabbed indentation
+set mouse=a                         " pass mouse scrolling control to vim
+set so=999                          " keep cursor centered on scroll
+set wildignore+=**/node_modules/**  " ignore node_modules when using vimgrep
+:au FocusLost * :wa                 " autosave on focus lost
 
 filetype plugin indent on " might not need this?
 
@@ -28,9 +29,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'amiralies/coc-elixir', {'do': 'yarn install --frozen-lockfile'}
+Plug 'mileszs/ack.vim'
 
 call plug#end()
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 " Colour support
 if (has("termguicolors"))
@@ -94,6 +99,8 @@ set splitright              " create new vsplit right of current buffer
 let g:netrw_liststyle = 1                       " set tree list view in netrw
 let g:netrw_banner = 0                          " hide banner in netrw
 autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelisting files
+" shortcut - to open file navigation
+:nnoremap - :E<CR>
 
 " Buffer navigation
 :nnoremap <C-n> :bnext<CR>
