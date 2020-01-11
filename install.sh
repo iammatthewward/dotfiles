@@ -2,6 +2,7 @@
 
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+mkdir -p ~/.vim/ftplugin
 ln -sfv "$DOTFILES_DIR/.alias" ~
 ln -sfv "$DOTFILES_DIR/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/.vim/ftplugin/javascript.vim" ~/.vim/ftplugin/javascript.vim
