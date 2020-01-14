@@ -97,7 +97,7 @@ let g:netrw_liststyle = 1                       " set tree list view in netrw
 let g:netrw_banner = 0                          " hide banner in netrw
 autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelisting files
 " shortcut - to open file navigation
-:nnoremap - :E<CR>
+:nmap <silent> - :E<CR>
 
 " Buffer navigation
 :nnoremap <C-n> :bnext<CR>
