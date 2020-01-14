@@ -102,7 +102,7 @@ autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelistin
 " Buffer navigation
 :nnoremap <C-n> :bnext<CR>
 :nnoremap <C-p> :bprevious<CR>
-:nnoremap <C-x> :bd<CR>
+:nnoremap <C-x> :enew \| bd#<CR>
 
 " Linting and fixing
 let g:ale_fix_on_save = 1
