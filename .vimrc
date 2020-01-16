@@ -12,6 +12,7 @@ set mouse=a                         " pass mouse scrolling control to vim
 set so=999                          " keep cursor centered on scroll
 set wildignore+=**/node_modules/**  " ignore node_modules when using vimgrep
 :au FocusLost * :wa                 " autosave on focus lost
+let mapleader = ","                 " set leader key
 
 filetype plugin indent on " might not need this?
 
@@ -84,25 +85,30 @@ nnoremap <C-H> <C-W><C-H>
 :command Wq wq
 
 " copy to system clipboard
-noremap <C-y> "*y
+" noremap <C-y> "*y
+noremap <leader>y "*y
 
 " Press space to turn off highlighted search and clear search
-:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 set splitbelow              " create new vsplit below current buffer
 set splitright              " create new vsplit right of current buffer
+nnoremap <leader>s :sp<CR>
+nnoremap <leader>v :vsp<CR>
+nnoremap <leader>q :q<CR>
 
 " File navigation
 let g:netrw_liststyle = 1                       " set tree list view in netrw
 let g:netrw_banner = 0                          " hide banner in netrw
 autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelisting files
+
 " shortcut - to open file navigation
-:nmap <silent> - :E<CR>
+nnoremap - :E<CR>
 
 " Buffer navigation
-:nnoremap <C-n> :bnext<CR>
-:nnoremap <C-p> :bprevious<CR>
-:nnoremap <C-x> :enew \| bd#<CR>
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+nnoremap <C-x> :enew \| bd#<CR>
 
 " Linting and fixing
 let g:ale_fix_on_save = 1
