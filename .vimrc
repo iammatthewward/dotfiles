@@ -93,9 +93,9 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 set splitbelow              " create new vsplit below current buffer
 set splitright              " create new vsplit right of current buffer
-nnoremap <leader>s :sp<CR>
-nnoremap <leader>v :vsp<CR>
-nnoremap <leader>q :q<CR>
+nnoremap <silent> <leader>s :sp<CR>
+nnoremap <silent> <leader>v :vsp<CR>
+nnoremap <silent> <leader>q :q<CR>
 
 " File navigation
 let g:netrw_liststyle = 1                       " set tree list view in netrw
