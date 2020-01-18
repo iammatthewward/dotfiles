@@ -28,6 +28,7 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'dense-analysis/ale'
 Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -96,6 +97,7 @@ set splitright              " create new vsplit right of current buffer
 nnoremap <silent> <leader>s :sp<CR>
 nnoremap <silent> <leader>v :vsp<CR>
 nnoremap <silent> <leader>q :q<CR>
+nnoremap <silent> <leader>f :F<CR>
 
 " File navigation
 let g:netrw_liststyle = 1                       " set tree list view in netrw
