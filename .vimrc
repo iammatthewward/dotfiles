@@ -86,7 +86,6 @@ nnoremap <C-H> <C-W><C-H>
 :command Wq wq
 
 " copy to system clipboard
-" noremap <C-y> "*y
 noremap <leader>y "*y
 
 " Press space to turn off highlighted search and clear search
