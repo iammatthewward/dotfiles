@@ -51,6 +51,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export DEFAULT_USER="mattward"
 export AWS_USERNAME="matt.ward"
+export AWS_PROFILE=saml
 
 # this must go at the end of the file
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
