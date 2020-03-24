@@ -111,6 +111,10 @@ nnoremap <C-n> :bnext<CR>
 nnoremap <C-p> :bprevious<CR>
 nnoremap <C-x> :enew \| bd#<CR>
 
+
+" Grep shortcuts (using Ack)
+nnoremap <silent> <leader>g :Ack!<space>
+
 " Linting and fixing
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
