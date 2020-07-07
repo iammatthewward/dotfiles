@@ -1,0 +1,12 @@
+{
+    "eslint.autoFixOnSave": true,
+    "prettier.eslintIntegration": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript"
+    ],
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.errorSign": "✖",
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.enableHighlightLineNumber": false
+}
+

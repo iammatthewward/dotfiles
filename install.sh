@@ -14,3 +14,6 @@ ln -sfv "$DOTFILES_DIR/.vim/ftplugin/terraform.vim" ~/.vim/ftplugin/terraform.vi
 ln -sfv "$DOTFILES_DIR/.vim/ftplugin/velocity.vim" ~/.vim/ftplugin/velocity.vim
 ln -sfv "$DOTFILES_DIR/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/.zshrc" ~
+ln -sfv "$DOTFILES_DIR/coc-vim-settings.json" ~/.config/nvim/coc-settings.json
+ln -sfv "$DOTFILES_DIR/init.vim" ~/.config/nvim/init.vim
+
