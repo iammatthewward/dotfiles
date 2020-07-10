@@ -4,6 +4,7 @@ alias grm="git fetch && git rebase origin/master"
 alias gaa="git add ."
 alias gc="git commit -m"
 alias gp="git push"
+alias gpu="git push -u origin HEAD"
 
 # vim
 alias vim="nvim"
