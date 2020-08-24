@@ -19,3 +19,6 @@ alias tf="terraform"
 # postgresql
 alias pg_start="brew services start postgresql"
 alias pg_stop="brew services stop postgresql"
+
+# ClearScore
+alias ep="ephemeral-cli"
