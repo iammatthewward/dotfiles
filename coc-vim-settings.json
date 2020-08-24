@@ -1,12 +1,15 @@
 {
-    "eslint.autoFixOnSave": true,
-    "prettier.eslintIntegration": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "javascript"
-    ],
-    "diagnostic.checkCurrentLine": true,
-    "diagnostic.errorSign": "✖",
-    "diagnostic.messageTarget": "echo",
-    "diagnostic.enableHighlightLineNumber": false
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript"],
+  "prettier.eslintIntegration": true,
+  "prettier.disableSuccessMessage": true,
+  "prettier.arrowParens": "always",
+  "prettier.singleQuote": true,
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "json"],
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.errorSign": "✖",
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.enableHighlightLineNumber": false
 }
-

@@ -1,0 +1,3 @@
+" shortcut - to open file navigation
+nnoremap - :E<CR>
+

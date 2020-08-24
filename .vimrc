@@ -26,10 +26,13 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plug 'dense-analysis/ale'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
@@ -115,7 +118,7 @@ let g:netrw_banner = 0                          " hide banner in netrw
 autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelisting files
 
 " shortcut - to open file navigation
-nnoremap - :E<CR>
+nnoremap - :Explore<CR>
 
 " Buffer navigation
 nnoremap <C-n> :bnext<CR>
@@ -175,3 +178,4 @@ function! CocCurrentFunction()
 endfunction
 
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
