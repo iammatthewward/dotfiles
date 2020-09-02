@@ -26,13 +26,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'dense-analysis/ale'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
 
@@ -46,17 +44,7 @@ if (has("termguicolors"))
 endif
 
 " Options required for lightline
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }  " colourscheme
+let g:lightline = { 'colorscheme': 'onedark' }  " colourscheme
 let g:onedark_hide_endofbuffer = 1              " hide end-of-buffer ~ lines
 set laststatus=2                                " ensure status line always show
 set noshowmode                                  " hide mode since lightline shows it anyway
@@ -129,53 +117,10 @@ nnoremap <C-x> :enew \| bd#<CR>
 " Grep shortcuts (using Ack)
 nnoremap <silent> <leader>g :Ack!<space>
 
-" COC settings
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Quicker linting (ms)
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Add (Neo)Vim's native statusline support.
-function! CocCurrentFunction()
-  return get(b:, 'coc_current_function', '')
-endfunction
-
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
+" Linting and fixing
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
