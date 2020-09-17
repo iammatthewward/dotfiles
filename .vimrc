@@ -31,6 +31,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -124,3 +125,7 @@ let g:ale_fixers = {
 \}
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
+
+" autocomplete
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
