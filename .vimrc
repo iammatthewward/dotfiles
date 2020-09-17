@@ -11,6 +11,7 @@ set bs=2                            " allow backspace to delete over line breaks
 set mouse=a                         " pass mouse scrolling control to vim
 set so=999                          " keep cursor centered on scroll
 set wildignore+=**/node_modules/**  " ignore node_modules when using vimgrep
+set wildcharm=<Tab>                 " allow <Tab> to be used to execute the tab key in mappings
 :au FocusLost * :wa                 " autosave on focus lost
 let mapleader = ","                 " set leader key
 
@@ -27,11 +28,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tpope/vim-endwise'
 
 call plug#end()
 
@@ -50,6 +52,7 @@ let g:onedark_hide_endofbuffer = 1              " hide end-of-buffer ~ lines
 set laststatus=2                                " ensure status line always show
 set noshowmode                                  " hide mode since lightline shows it anyway
 set cursorline                                  " highlight the current line
+set wildmenu
 
 " Colorscheme overrides
 if (has("autocmd") && !has("gui_running"))
@@ -109,11 +112,14 @@ autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelistin
 " shortcut - to open file navigation
 nnoremap - :Explore<CR>
 
-" Buffer navigation
-nnoremap <C-n> :bnext<CR>
-nnoremap <C-p> :bprevious<CR>
-nnoremap <C-x> :enew \| bd#<CR>
+" Buffer switching
+nnoremap <leader>b :b<Space><Tab>
 
+" Tab navigation
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-n> :tabnext<CR>
+nnoremap <C-p> :tabprevious<CR>
+nnoremap <C-x> :tabclose<CR>
 
 " Grep shortcuts (using Ack)
 nnoremap <silent> <leader>g :Ack!<space>
@@ -129,3 +135,8 @@ let g:ale_sign_warning = '⚠'
 " autocomplete
 let g:deoplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" LSP integrations
+let g:ale_elixir_elixir_ls_release='~/elixir-ls/release'
+
+noremap <leader>d :ALEGoToDefinition<CR>
