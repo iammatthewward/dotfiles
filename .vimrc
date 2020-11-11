@@ -11,7 +11,7 @@ set bs=2                            " allow backspace to delete over line breaks
 set mouse=a                         " pass mouse scrolling control to vim
 set so=999                          " keep cursor centered on scroll
 set wildignore+=**/node_modules/**  " ignore node_modules when using vimgrep
-set wildcharm=<Tab>                 " allow <Tab> to be used to execute the tab key in mappings
+" set wildcharm=<Tab>                 " allow <Tab> to be used to execute the tab key in mappings
 :au FocusLost * :wa                 " autosave on focus lost
 let mapleader = ","                 " set leader key
 
@@ -27,13 +27,16 @@ Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'dense-analysis/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
-Plug 'tpope/vim-endwise'
+" coc.nvm
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
@@ -47,12 +50,22 @@ if (has("termguicolors"))
 endif
 
 " Options required for lightline
-let g:lightline = { 'colorscheme': 'onedark' }  " colourscheme
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }  " colourscheme
 let g:onedark_hide_endofbuffer = 1              " hide end-of-buffer ~ lines
 set laststatus=2                                " ensure status line always show
 set noshowmode                                  " hide mode since lightline shows it anyway
 set cursorline                                  " highlight the current line
-set wildmenu
+" set wildmenu
 
 " Colorscheme overrides
 if (has("autocmd") && !has("gui_running"))
@@ -112,31 +125,77 @@ autocmd FileType netrw setl bufhidden=wipe      " fix to prevent netrwtreelistin
 " shortcut - to open file navigation
 nnoremap - :Explore<CR>
 
-" Buffer switching
-nnoremap <leader>b :b<Space><Tab>
-
-" Tab navigation
-nnoremap <C-t> :tabnew<CR>
-nnoremap <C-n> :tabnext<CR>
-nnoremap <C-p> :tabprevious<CR>
-nnoremap <C-x> :tabclose<CR>
+" Buffer navigation
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+nnoremap <C-x> :enew \| bd#<CR>
 
 " Grep shortcuts (using Ack)
 nnoremap <silent> <leader>g :Ack!<space>
 
-" Linting and fixing
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\}
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '⚠'
+" COC settings
+" TextEdit might fail if hidden is not set.
+set hidden
 
-" autocomplete
-let g:deoplete#enable_at_startup = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Quicker linting (ms)
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" " Add (Neo)Vim's native statusline support.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " LSP integrations
 let g:ale_elixir_elixir_ls_release='~/elixir-ls/release'
-
-noremap <leader>d :ALEGoToDefinition<CR>

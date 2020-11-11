@@ -1,0 +1,23 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "json",
+    "markdown"
+  ],
+  "coc.preferences.formatOnType": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.enableHighlightLineNumber": false,
+  "diagnostic.errorSign": "✖",
+  "diagnostic.messageTarget": "echo",
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": ["javascript", "javascriptreact", "typescript"],
+  "javascript.showUnused": false,
+  "javascript.suggestionActions.enabled": false,
+  "prettier.arrowParens": "always",
+  "prettier.disableSuccessMessage": true,
+  "prettier.eslintIntegration": true,
+  "prettier.singleQuote": true,
+  "tsserver.formatOnType": true,
+  "typescript.suggestionActions.enabled": false
+}
