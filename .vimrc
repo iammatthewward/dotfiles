@@ -14,8 +14,9 @@ set wildignore+=**/node_modules/**  " ignore node_modules when using vimgrep
 " set wildcharm=<Tab>                 " allow <Tab> to be used to execute the tab key in mappings
 :au FocusLost * :wa                 " autosave on focus lost
 let mapleader = ","                 " set leader key
+set clipboard=unnamedplus           " use system clipboard
 
-filetype plugin indent on " might not need this?
+filetype plugin indent on 
 
 " Packages
 "setup vim-plug {{{
@@ -33,12 +34,14 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'leafgarland/typescript-vim'
 Plug 'pedrohdz/vim-yaml-folds'
+Plug 'Yggdroot/indentLine'
 " coc.nvm
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
 
@@ -105,9 +108,6 @@ nnoremap <C-H> <C-W><C-H>
 :command Q q
 :command WQ wq
 :command Wq wq
-
-" copy to system clipboard
-noremap <leader>y "*y
 
 " Press space to turn off highlighted search and clear search
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
@@ -201,3 +201,10 @@ nmap <silent> gr <Plug>(coc-references)
 
 " LSP integrations
 let g:ale_elixir_elixir_ls_release='~/elixir-ls/release'
+
+" Folding
+set foldmethod=syntax   " syntax highlighting items specify folds
+set foldlevelstart=99   " ensure all folds are open when we open a file
+
+" Set the indent line used in to Yggdroot/indentLine be a thinner line 
+let g:indentLine_char = '⦙'
