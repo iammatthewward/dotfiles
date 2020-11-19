@@ -208,3 +208,4 @@ set foldlevelstart=99   " ensure all folds are open when we open a file
 
 " Set the indent line used in to Yggdroot/indentLine be a thinner line 
 let g:indentLine_char = '⦙'
+let g:indentLine_fileTypeExclude = ['markdown']
