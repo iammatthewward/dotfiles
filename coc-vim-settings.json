@@ -1,9 +1,12 @@
 {
   "coc.preferences.formatOnSaveFiletypes": [
+    "html",
     "javascript",
-    "typescript",
+    "javascriptreact",
     "json",
     "markdown",
+    "typescript",
+    "typescriptreact",
     "yaml"
   ],
   "coc.preferences.formatOnType": true,
@@ -12,7 +15,12 @@
   "diagnostic.messageTarget": "echo",
   "diagnostic.errorSign": "✖",
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": ["javascript", "javascriptreact", "typescript"],
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "javascript.showUnused": false,
   "typescript.showUnused": false,
   "javascript.suggestionActions.enabled": false,
@@ -20,9 +28,5 @@
   "prettier.disableSuccessMessage": true,
   "prettier.eslintIntegration": true,
   "prettier.singleQuote": true,
-  "tsserver.formatOnType": true,
-  "yaml.format.enable": true,
-  "yaml.schemas": {
-    "kubernetes": "/*.yaml"
-  }
+  "tsserver.formatOnType": true
 }

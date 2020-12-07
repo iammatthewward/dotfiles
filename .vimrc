@@ -11,10 +11,8 @@ set bs=2                            " allow backspace to delete over line breaks
 set mouse=a                         " pass mouse scrolling control to vim
 set so=999                          " keep cursor centered on scroll
 set wildignore+=**/node_modules/**  " ignore node_modules when using vimgrep
-" set wildcharm=<Tab>                 " allow <Tab> to be used to execute the tab key in mappings
 :au FocusLost * :wa                 " autosave on focus lost
 let mapleader = ","                 " set leader key
-set clipboard=unnamedplus           " use system clipboard
 
 filetype plugin indent on 
 
@@ -33,6 +31,7 @@ Plug 'tpope/vim-surround'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'pedrohdz/vim-yaml-folds'
 Plug 'Yggdroot/indentLine'
 " coc.nvm
@@ -49,6 +48,9 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" copy to system clipboard
+noremap <leader>y "*y
+
 " Colour support
 if (has("termguicolors"))
     set termguicolors
@@ -63,9 +65,28 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
+      \   'currentfunction': 'CocCurrentFunction',
+      \   'filename': 'LightlineFilename'
       \ },
-      \ }  " colourscheme
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ }
+
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '♤ ' : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ ('' != expand('%:f') ? expand('%:f') : '[New File]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+
+" colourscheme
 let g:onedark_hide_endofbuffer = 1              " hide end-of-buffer ~ lines
 set laststatus=2                                " ensure status line always show
 set noshowmode                                  " hide mode since lightline shows it anyway

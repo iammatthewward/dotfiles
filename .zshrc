@@ -53,6 +53,9 @@ export DEFAULT_USER="mattward"
 export AWS_USERNAME="matt.ward"
 export AWS_PROFILE=saml
 
+# enable kubectl autocompletions
+source <(kubectl completion zsh)
+
 # this must go at the end of the file
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -60,3 +63,9 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.alias
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/mattward/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mattward/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/mattward/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/mattward/google-cloud-sdk/completion.zsh.inc'; fi

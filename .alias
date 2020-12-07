@@ -1,6 +1,8 @@
 # git
 alias master="git checkout master"
+alias main="git checkout main"
 alias grm="git fetch && git rebase origin/master"
+alias grmn="git fetch && git rebase origin/main"
 alias gaa="git add ."
 alias gc="git commit -m"
 alias gp="git push"
@@ -22,3 +24,7 @@ alias pg_stop="brew services stop postgresql"
 
 # ClearScore
 alias ep="ephemeral-cli"
+
+# k8s
+alias infinite="kubectl config use-context do-sfo2-eat-sleep-dev && doctl auth switch --context default"
+alias home="kubectl config use-context do-lon1-k8s-dev && doctl auth switch --context matt"
