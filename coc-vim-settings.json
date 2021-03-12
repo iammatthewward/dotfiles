@@ -6,8 +6,7 @@
     "json",
     "markdown",
     "typescript",
-    "typescriptreact",
-    "yaml"
+    "typescriptreact"
   ],
   "coc.preferences.formatOnType": true,
   "diagnostic.checkCurrentLine": true,
@@ -28,5 +27,5 @@
   "prettier.disableSuccessMessage": true,
   "prettier.eslintIntegration": true,
   "prettier.singleQuote": true,
-  "tsserver.formatOnType": true
+  "tsserver.formatOnType": false
 }
